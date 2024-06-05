@@ -1,0 +1,148 @@
+﻿@using SignalR_ChatProject.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "登录";
+}
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .control-label{
+        display:flex;
+        width:50px;
+    }
+    .form-group{
+        width:500px;
+        display:flex;
+        justify-content:center;
+    }
+    .form-group label {
+        width: 100px;
+    }
+    #loginForm{
+        display:flex;
+        flex-direction:column;
+    }
+    a{
+        width:fit-content
+    }
+    .form-horizontal {
+        display: flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+    }
+    .remberLabel {
+        width: fit-content;
+    }
+
+    #loginPanel {
+        justify-content: center;
+        align-items: center;
+        padding: 100px 100px;
+        border-radius: 5px;
+        background-color: aliceblue;
+        transition: linear 0.2s;
+        width:fit-content;
+    }
+    #loginPanel:hover {
+        box-shadow: rgba(0,0,0,0.4) 10px 10px;
+        transform: scale(1.05);
+    }
+    .col-md-10{
+        display:flex;
+        align-items:center;
+        justify-items:center;
+        width:300px;
+    }
+</style>
+
+<div id="loginPanel">
+    <center>
+        <h1 style="margin-bottom:20px">简易聊天室</h1>
+        <img src="~/Content/loginLogo2.ico" />
+    </center>
+
+    <div class="row" style="display:flex;align-items:center;justify-content:center;width:fit-content">
+        <div class="col-md-8" style="display: flex; align-items: center; justify-content: center;">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div style="display:flex;flex-direction:column;align-items: center; justify-content: center;">
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" >
+                        <div class="col-md-10" style="display:flex;justify-content:center;">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe, new { @class = "remberLabel"})
+                            </div>
+                        </div>
+                        <div class="col-md-10" style="padding-right:100px">
+                            <input type="submit" value="登录" class="btn btn-success form-control" id="login" />
+                        </div>
+
+                    </div>
+                    @*
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("作为新用户注册", "", new { @class = "btn btn-primary" })
+                    </div>*@
+
+                    @* Enable this once you have account confirmation enabled for password reset functionality
+            <p>
+                @Html.ActionLink("Forgot your password?", "ForgotPassword")
+            </p>*@
+                }
+            </section>
+        </div>
+        @*<div class="col-md-4">
+                <section id="socialLoginForm">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </section>
+            </div>*@
+    </div>
+</div>
+<style>
+    #loginPanel{
+        background-color:aliceblue;
+    }
+</style>
+<br />
+
+@section Scripts {
+ 
+    <script>
+
+         $(document).ready(function() {
+
+                    $.LoadingOverlay("show");
+
+                    setTimeout(function(){
+                        $.LoadingOverlay("hide");
+                    }, 2000);
+                });
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

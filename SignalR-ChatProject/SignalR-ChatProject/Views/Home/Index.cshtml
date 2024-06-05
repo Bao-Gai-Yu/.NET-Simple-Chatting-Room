@@ -1,0 +1,145 @@
+﻿<input type="hidden" id="hdId" />
+<input type="hidden" id="hdUserName" />
+<br />
+<div id="privateChat"></div>
+
+<style>
+    #divChat{
+        width:1000px;
+        height:1000px;
+    }
+    .modal-header .form-group {
+        margin-bottom: 10px;
+    }
+
+    .modal-body {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+</style>
+
+<div class="row" background="~/Content/background.png">
+    <div id="divChat" class="panel panel-default">
+        <div class="panel-heading" style="height:80px;">
+            <div id="time">
+                <h5> <b id="clock"></b></h5>
+                <h6>@DateTime.Now.ToString("yyyy/MM/dd")</h6>
+            </div>
+            <h3> 欢迎  &nbsp;<b><span id="spanUser"></span></b> !</h3>
+        </div>
+
+        <div class="panel-body" style="height:84%;">
+            <div class="col-sm-9" style="height:100%;">
+                <div id="divChatWindow" style="height:100%;"></div>
+            </div>
+
+            <div class="col-sm-3" style="height:100%;">
+                <div style="height:80px"><b>在线用户数 (<strong id="onlineMember"></strong>) </b><br /><hr /></div>
+                
+                <div id="divusers" style="height:92%;"></div>
+            </div>
+        </div>
+
+        <div class="panel-footer" style="height:80px;">
+            <form class="form-inline">
+                <textarea id="txtMessage" class="form-control" placeholder="说点什么..."></textarea>
+                <button id="btnSendMsg" class="btn btn-success">发送</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#historyModal">查看聊天记录</button>
+            </form>
+        </div>
+    </div>
+
+    <!--Chat History -->
+    <div id="historyModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">查看历史聊天记录</h4>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">开始日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" id="dateFrom">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">结束日期</label>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control" id="dateTo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">指定用户</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="inputName">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" id="chatHistory">
+                    <!-- 聊天记录内容 -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="btnGetHistory" class="btn btn-primary">查看</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End Chat History-->
+
+
+</div>
+
+
+<!-- Private Message -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title" id="userprivate"></h4>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-inline">
+                    <div id="divusers"></div>
+                    <input type="text" id="privateTxt" class="form-control" placeholder="Enter your message..." />
+                    <button id="privateSent" class="btn btn-success">Send</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+
+    <script src="~/App/chatJS.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/App/notificationJS.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.0.2/dist/loadingoverlay.min.js"></script>
+
+    <script>
+                //$(document).ready(function() {
+
+                //    $.LoadingOverlay("show");
+
+                //    setTimeout(function(){
+                //        $.LoadingOverlay("hide");
+                //    }, 2000);
+                //});
+    </script>
+}

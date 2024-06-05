@@ -1,0 +1,74 @@
+﻿@model SignalR_ChatProject.Models.RegisterViewModel
+@{
+    ViewBag.Title = "注册";
+}
+
+<style>
+    #registerPanel {
+        justify-content: center;
+        align-items: center;
+        padding: 100px 100px;
+        border-radius: 5px;
+        background-color: aliceblue;
+        transition:linear 0.2s;
+        width:fit-content;
+    }
+    #registerPanel:hover {
+        box-shadow: rgba(0,0,0,0.4) 10px 10px;
+        transform:scale(1.05);
+    }
+    .form-group {
+        width: 500px;
+        display: flex;
+        justify-content: center;
+    }
+    .form-group label {
+        width: 100px;
+    }
+</style>
+
+<div id="registerPanel" >
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <h2>@ViewBag.Title</h2>
+        @Html.AntiForgeryToken()
+        <h4>创建一个账号</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="注册" />
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
+
+

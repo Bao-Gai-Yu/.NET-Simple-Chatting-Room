@@ -1,0 +1,78 @@
+﻿<div class="container" id="notificationDiv">
+    <div style="height:10%;margin:0;display:flex;flex-direction:column;justify-content:center">
+        <h1 style="text-align: center; margin: 0">通知板</h1>
+    </div>
+    <div class="justify-content-center mt-4" id="notesPanel">
+        <div class="col-sm-8" id="notificationPanel">
+            <!-- Notifications will be displayed here -->
+        </div>
+    </div>
+    <div class="form-inline justify-content-center mt-5" id="editPanel">
+        <div class="col-sm-8" style="width:100%; padding: 0 20px;display:flex;justify-content:left">
+            <div class="panel panel-default" id="notiWindow" style="width:43%">
+                <textarea id="txtMessage" class="form-control" placeholder="写一篇通知吧..."></textarea>
+                <button id="btnSend" class="btn btn-primary"style="margin-left:20px">发送</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    #notificationDiv{
+        background-color:aliceblue;
+        width:1000px;
+        height:1000px;
+        margin:0;
+        padding:0;
+    }
+
+    #notesPanel {
+        width: 100%;
+        height: 70%;
+    }
+
+    #notificationPanel {
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px 10px 10px;
+        display: flex;
+        flex-direction: column;
+        border-bottom: solid 2px;
+        border-color: aliceblue;
+    }
+
+    #editPanel {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .panel-default {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #txtMessage {
+        height: 100px;
+    }
+
+    .notification {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+
+@section scripts{
+    <script src="~/signalr/hubs"></script>
+    <script src="~/App/notificationJS.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+}

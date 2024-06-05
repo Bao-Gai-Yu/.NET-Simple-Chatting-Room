@@ -1,0 +1,89 @@
+﻿<div class="stats-container">
+    <h1 style="text-align:center">数据统计</h1>
+    <div class="form-group stats-box">
+        <h3 class="stalabel">累计发送的信息数:</h3>
+        <h3 class="staNum" id="totalMessage"></h3>
+        <div class="bar darkkhaki" id="totalMessageBar"></div>
+    </div>
+    <div class="form-group stats-box">
+        <h3 class="stalabel">我发送的信息数:</h3>
+        <h3 class="staNum" id="totalMyMessage"></h3>
+        <div class="bar darkkhaki" id="totalMyMessageBar"></div>
+    </div>
+    <div class="form-group stats-box">
+        <h3 class="stalabel">今日累计发送信息数:</h3>
+        <h3 class="staNum" id="todayMessages"></h3>
+        <div class="bar burlywood" id="todayMessagesBar"></div>
+    </div>
+    <div class="form-group stats-box">
+        <h3 class="stalabel">我今日发送的信息数:</h3>
+        <h3 class="staNum" id="todayMyMessages"></h3>
+        <div class="bar burlywood" id="todayMyMessagesBar"></div>
+    </div>
+    <div class="form-group stats-box">
+        <h3 class="stalabel">全部成员数:</h3>
+        <h3 class="staNum" id="totalMember"></h3>
+        <div class="bar aquamarine" id="totalMemberBar"></div>
+    </div>
+</div>
+
+
+<style>
+    .stats-container {
+        width: 80%;
+        max-width: 1500px;
+        margin: 0;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .stats-box {
+        padding: 15px;
+        margin: 10px 0;
+        text-align: center;
+        border-radius: 10px;
+        color: #fff;
+        display: flex;
+        flex-direction:row;
+    }
+
+    .stalabel {
+        width: 250px;
+        text-align: right;
+        color: black;
+        margin-right:15px
+    }
+
+    .staNum {
+        width: 50px;
+        text-align: left;
+        color: black;
+    }
+
+    .darkkhaki {
+        background-color: darkkhaki;
+    }
+
+    .burlywood {
+        background-color: burlywood;
+    }
+
+    .aquamarine {
+        background-color: aquamarine;
+    }
+
+    .bar {
+        height: 20px;
+        margin-top: 23px;
+        max-width:1200px;
+        transition:ease-in 0.3s;
+    }
+</style>
+
+@section scripts{
+
+    <script src="~/signalr/hubs"></script>
+    <script src="~/App/dashboardJS.js"></script>
+}
